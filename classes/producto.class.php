@@ -67,7 +67,7 @@
         public function listado() {
             $stmt = $this->db->prepare('SELECT id_producto, descripcion, nombre, precio FROM producto');
             $stmt->execute();
-            $datos = $stmt->fetch();
+            $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $datos;
         }
     }

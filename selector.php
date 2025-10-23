@@ -1,4 +1,6 @@
 <?php
+
+
 if(array_key_exists("contenido", $_GET)){
     switch($_GET["contenido"]){
         case "productos": 
