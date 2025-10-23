@@ -1,0 +1,40 @@
+# Composer
+/vendor/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# PHPStorm / IDE
+.idea/
+.vscode/
+
+# WAMP / Apache log/temp
+logs/
+/tmp/
+
+# Environment files
+.env
+.env.local
+
+# PHP session files or uploads
+session
+uploads/
+
+# Mac hidden
+._*
+
+# Node modules if present
+node_modules/
+
+# Composer lock
+composer.lock
+
+# Ignore database dumps
+*.sql
+
+# Ignore user-specific files
+*.log
+
+# Ignore vendor if present
+/vendor/
