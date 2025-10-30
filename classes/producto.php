@@ -1,4 +1,4 @@
-<?php
+-<?php
 // Cargar la definición de la clase Producto una sola vez
 require_once __DIR__ . '/producto.class.php';
 
