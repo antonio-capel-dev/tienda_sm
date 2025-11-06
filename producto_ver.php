@@ -2,7 +2,7 @@
 
     require_once("classes/producto.class.php");
 
-    $objProducto = new Producto(($db));
+    $objProducto = new Producto($db);
     $datos = $objProducto->verdetalle($_GET["id"]);
 
     echo "<pre>"; print_r($datos); echo "</pre>";
@@ -11,7 +11,7 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">Rounded Chair</h3>
+            <h3 class="card-title"><?php echo $datos["imagen"]; ?></h3>
             <h6 class="card-subtitle">globe type chair for rest</h6>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-6">
@@ -26,7 +26,7 @@
                     <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
                         <i class="fa fa-shopping-cart"></i>
                     </button>
-                    <button class="btn btn-primary btn-rounded">Buy Now</button>
+                    <a href="index.php?contenido=editarproducto&id$_GET["id"])" class="btn btn-primary btn-rounded">Editar</a>
                     <h3 class="box-title mt-5">Key Highlights</h3>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-check text-success"></i>Sturdy structure</li>
@@ -44,60 +44,7 @@
                                     <td>Stellar</td>
                                 </tr>
                                 <tr>
-                                    <td>Delivery Condition</td>
-                                    <td>Knock Down</td>
-                                </tr>
-                                <tr>
-                                    <td>Seat Lock Included</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Type</td>
-                                    <td>Office Chair</td>
-                                </tr>
-                                <tr>
-                                    <td>Style</td>
-                                    <td>Contemporary&amp;Modern</td>
-                                </tr>
-                                <tr>
-                                    <td>Wheels Included</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Upholstery Included</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Upholstery Type</td>
-                                    <td>Cushion</td>
-                                </tr>
-                                <tr>
-                                    <td>Head Support</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Suitable For</td>
-                                    <td>Study&amp;Home Office</td>
-                                </tr>
-                                <tr>
-                                    <td>Adjustable Height</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Model Number</td>
-                                    <td>F01020701-00HT744A06</td>
-                                </tr>
-                                <tr>
-                                    <td>Armrest Included</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Care Instructions</td>
-                                    <td>Handle With Care,Keep In Dry Place,Do Not Apply Any Chemical For Cleaning.</td>
-                                </tr>
-                                <tr>
-                                    <td>Finish Type</td>
-                                    <td>Matte</td>
+                               
                                 </tr>
                             </tbody>
                         </table>

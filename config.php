@@ -1,8 +1,8 @@
 <?php
     $dbhost="localhost";
-    $dbuser="clase";
-    $dbpass="clase";
-    $dbname="segundamano";
+    $dbuser="root";
+    $dbpass="";
+    $dbname="mi-base-de-datos";
     $dbtype="mysql";
     $dbport=3306;
 
@@ -17,5 +17,5 @@
     define('SITE_NAME', 'REBUShop');
     define('PHONE', '622173633');
 
-    define('PAGINADO', 2);
+    define('PAGINADO', 8);
 ?>
