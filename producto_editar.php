@@ -5,9 +5,11 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
     die("Error, no hay producto escogido para editar");
 }
 
+
 $objProducto = new Producto($db);
-$producto = $objProducto->editardetalle($_GET["id"]);
-echo "<pre>"; print_r($producto); echo "</pre>";
+$datos = $objProducto->editardetalle($_GET["id"]);
+//echo "<pre>"; print_r($datos); echo "</pre>";
+
 
 
 ?>
@@ -32,7 +34,11 @@ echo "<pre>"; print_r($producto); echo "</pre>";
         <div class="card-body">
 
         <form action="">
+<<<<<<< HEAD
             <h3 class="card-title">input type =<?php echo $datos["imagen"]; ?></h3>
+=======
+            <h3 class="card-title"><?php $datos["imagen"]; ?></h3>
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
             <h6 class="card-subtitle">globe type chair for rest</h6>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-6">
@@ -47,7 +53,11 @@ echo "<pre>"; print_r($producto); echo "</pre>";
                     <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
                         <i class="fa fa-shopping-cart"></i>
                     </button>
+<<<<<<< HEAD
                     <a href="index.php?contenido=editarproducto&id$_GET["id"])" class="btn btn-primary btn-rounded">Editar</a>
+=======
+                    <a href="index.php?contenido=editarproducto&id=<?php echo $_GET["id"]; ?>" class="btn btn-primary btn-rounded">Editar</a>
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
                     <h3 class="box-title mt-5">Key Highlights</h3>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-check text-success"></i>Sturdy structure</li>

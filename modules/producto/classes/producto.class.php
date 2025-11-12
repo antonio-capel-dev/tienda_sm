@@ -12,12 +12,62 @@
             $this->db = $db;
         }
 
+<<<<<<< HEAD
         public function nuevo(){
 
         }
 
         public function baja(){
 
+=======
+        public function nuevo(array $form = []): bool{
+            if (!isset($form['nombre'], $form['percio'] $form['id_tipo_impuesto'])) return false;
+
+            $nombre = trim((string)$form['nombre']);
+            if ($nombre === '') return false;
+
+            $precio = (float)$form['precio'];
+            if ($nombre === '') return false;
+            $descripcion = isset($form['descripcion']) ? trim((string)$form['descripcion']) : null
+            $imagen = isset($form['imagen']) ? trim ((string)$form['imagen']) : null;
+             $sql = 'INSERT INTO producto (nombre, descripcion, imagen, precio, id_tipo_impuesto)
+                VALUES (:nombre, :descripcion, :imagen, :precio, :id_tipo_impuesto)';
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $stmt->bindValue(':descripcion', $descripcion, $descripcion === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':imagen', $imagen, $imagen === null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+        $stmt->bindValue(':precio', $precio);
+        $stmt->bindValue(':id_tipo_impuesto', $id_tipo, PDO::PARAM_INT);
+
+
+
+            $stmt = $this->db->prepare('DELETE FROM producto WHERE id_producto = :id');
+            $stmt->bindValue('id', $id, PDO:: PARAM_INT);
+            try{
+                if($stmt->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $e){
+                return false;
+            }
+        }
+
+        public function eliminar(int $id): bool{
+            $stmt = $this->db->prepare('DELETE FROM producto WHERE id_producto = :id');
+            $stmt->bindValue('id', $id, PDO:: PARAM_INT);
+            try{
+                if($stmt->execute()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $e){
+                return false;
+            }
+        }   
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
         }
         
         
@@ -85,6 +135,12 @@
             $stmt->bindValue(':nombre', $formulario["nombre"]);
             $stmt->bindValue(':precio', $formulario["precio"]);
             $stmt->bindValue(':descripcion', $formulario["descripcion"]);
+<<<<<<< HEAD
+=======
+  
+            
+
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
             
             try{
                 if($stmt->execute()){

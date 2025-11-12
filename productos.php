@@ -27,16 +27,28 @@
             foreach($listado["datos"] as $id=>$prod){
                 $precio=($prod["precio"]!="")?number_format($prod["precio"], 2, ",", ".")." €":"";
                 echo '<tr>';
+<<<<<<< HEAD
                     echo '<td>'.$prod.'</td>';
                     echo '<td>'.$prod["nombre"].'</td>';
                     echo '<td align="right">'.$precio.'</td>';
                     echo '<td>';
                     echo '<a href="index.php?contenido=verproducto&id='.$prod["id_producto"].'"Ver</a>';
+=======
+                    echo '<td>'.$prod["id_producto"].'</td>';
+                    echo '<td>'.$prod["nombre"].'</td>';
+                    echo '<td align="right">'.$precio.'</td>';
+                    echo '<td>';
+                    echo '<a href="index.php?contenido=verproducto&id='.$prod["id_producto"].'">Ver</a>';
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
                     echo '</td>';
                 echo '</tr>';
                 
             }
+<<<<<<< HEAD
                                                                                                           ?> 
+=======
+                                                                                                                   ?> 
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
     </table>
     <div class="paginado">
         <?php
@@ -57,10 +69,12 @@
                 echo '<li class="page-item"><a class="page-link">siguiente</a></li>';
                 echo '</ul>';
                 echo '</nav>';
+<<<<<<< HEAD
                
     
+=======
+>>>>>>> b588d6d (✨ Refactor completo: CRUD de tipo_impuesto y producto, controladores corregidos, paginación segura, validaciones, sanitización, render mejorado y arquitectura MVC más sólida.)
             }
-
         ?>
     </div>
 </div>
