@@ -23,8 +23,15 @@ class Producto
      */
     public function listarDB($pagina, $paginado)
     {
-        $stmt = $this->db->prepare('SELECT COUNT(*) AS total FROM producto');
+        $stmt = $this->db->prepare('SELECT p.id, p.nombre, p.descripcion,
+        p.precio, ti.impuesto, ti.valor
+        FROM producto as p
+        LEFT JOIN tipo_impuesto ti ON p.id_tipo_impuesto = ti.id_tipo_impuesto
+        LIMIT :inicio, :paginado');
+        $stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+        $stmt->bindValue(':paginado', $paginado, PDO::PARAM_INT);
         $stmt->execute();
+        print_r($listado["datos"]);
         $total = $stmt->fetch(PDO::FETCH_ASSOC)["total"];
 
         $pagina -= 1;

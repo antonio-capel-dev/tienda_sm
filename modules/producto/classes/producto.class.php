@@ -66,15 +66,27 @@
             $pagina-=1;
             $inicio=$pagina * $paginado;
             $stmt = $this->db->prepare('
-                                        SELECT id_producto, nombre, descripcion, precio 
-                                        FROM producto
-                                        LIMIT '.$inicio.','.$paginado.'
-                                        ');
+             SELECT 
+                p.id_producto,
+                p.nombre,
+                p.descripcion,
+                p.precio,
+                ti.impuesto,
+                ti.valor
+                FROM producto AS p
+                LEFT JOIN tipo_impuesto AS ti 
+                ON p.id_tipo_impuesto = ti.id_tipo_impuesto
+                LIMIT :inicio, :paginado
+                ');
+            $stmt->bindValue(':inicio', $inicio, PDO::PARAM_INT);
+            $stmt->bindValue(':paginado', $paginado, PDO::PARAM_INT);
             $stmt->execute();
-            //$stmt->bindValue(1, $type, PDO::PARAM_STR, 256);
-            //$stmt->bindParam(2, $lob, PDO::PARAM_LOB);
+
             $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return array("version"=>"nueva", "total"=>$total, "paginas"=>ceil($total/$paginado), "paginaActual"=>$pagina + 1, "datos"=>$datos);
+            return array("total"=> $total,
+            "paginas"=>ceil($total/$paginado),
+            "paginaActual"=> $pagina + 1,
+            "datos" =>$datos);
         }
 
         
@@ -128,51 +140,7 @@
             }catch(Exception $e){
                 return false;
             }
-            
-            
-            
-            
-        }
-
-
-        public function render($theme, $data, $type){
-            $html="";
-            if (isset($data["datos"]) && is_array($data["datos"])) {
-                foreach($data["datos"] as $id=>$prod){
-                    $precio=($prod["precio"]!="")?number_format($prod["precio"], 2, ",", ".")." €":"";
-                    $html.='<tr>';
-                        $html.= '<td>'.$id.'</td>';
-                        $html.= '<td>'.$prod["nombre"].'</td>';
-                        $html.= '<td align="right">'.$precio.'</td>';
-                        $html.= '<td>';
-                            $html.= '<a href="index.php?contenido=verproducto&id='.$prod["id_producto"].'">Ver</a>';
-                            $html.= '&nbsp;';
-                            $html.= '<a href="index.php?contenido=editarproducto&id='.$prod["id_producto"].'">Editar</a>';
-                        $html.= '</td>';
-                    $html.= '</tr>';
-                }
-            }
-            $response = str_replace("##CONTENT@@", $html, file_get_contents($theme));
-            if(array_key_exists("nombre", $data)){
-                $response = str_replace("##NOMBRE@@", $data["nombre"], $response);
-            }
-            if(array_key_exists("descripcion", $data)){
-                $response = str_replace("##DESCRIPCION@@", ($data["descripcion"])?$data["descripcion"]:"", $response);
-            }
-            if(array_key_exists("precio", $data)){
-                $response = str_replace("##PRECIO@@", number_format($data["precio"], 2, "," , "."), $response);
-            }
-            if(array_key_exists("id_producto", $data)){
-                $response = str_replace("##ID@@", $data["id_producto"], $response);
-            }
-            if(array_key_exists("imagen", $data)){
-                $response = str_replace("##IMAGEN@@", $data["imagen"], $response);
-            }
-            
-            return $response;
-        
+  
         }
     }
-
-    
 ?>

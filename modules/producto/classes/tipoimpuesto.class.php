@@ -7,9 +7,7 @@ class Tipo_Impuesto {
         $this->db = $db;
     }
 
-    /* =============================
-       LISTADO CON PAGINACIÓN
-       ============================= */
+    
     public function listarDB(int $pagina = 1, int $paginado = 10): array {
         $pagina = max(1, $pagina);
         $inicio = ($pagina - 1) * $paginado;
@@ -40,9 +38,6 @@ class Tipo_Impuesto {
         ];
     }
 
-    /* =============================
-       OBTENER UN REGISTRO
-       ============================= */
     public function verDetalle(int $id): ?array {
         $stmt = $this->db->prepare('SELECT * FROM tipo_impuesto WHERE id_tipo_impuesto = :id');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -52,9 +47,6 @@ class Tipo_Impuesto {
         return $fila ?: null;
     }
 
-    /* =============================
-       CREAR NUEVO REGISTRO
-       ============================= */
     public function crear(array $form): bool {
         if (!isset($form['impuesto'], $form['valor'])) return false;
 
@@ -77,9 +69,6 @@ class Tipo_Impuesto {
         }
     }
 
-    /* =============================
-       EDITAR REGISTRO
-       ============================= */
     public function guardarDetalle(int $id, array $form): bool {
         if (!isset($form['impuesto'], $form['valor'])) return false;
 
@@ -102,9 +91,6 @@ class Tipo_Impuesto {
         }
     }
 
-    /* =============================
-       ELIMINAR
-       ============================= */
     public function eliminar(int $id): bool {
         $stmt = $this->db->prepare('DELETE FROM tipo_impuesto WHERE id_tipo_impuesto = :id');
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -116,22 +102,5 @@ class Tipo_Impuesto {
         }
     }
 
-    /* =============================
-       RENDER: SOLO FILAS
-       (Como Producto)
-       ============================= */
-    public function renderRows(array $datos): string {
-        $html = "";
-
-        foreach ($datos as $fila) {
-            $html .= "<tr>";
-            $html .= "<td>{$fila['id_tipo_impuesto']}</td>";
-            $html .= "<td>{$fila['impuesto']}</td>";
-            $html .= "<td>{$fila['valor']}</td>";
-            $html .= "</tr>";
-        }
-hjh
-        return $html;
-    }
 }
 ?>
